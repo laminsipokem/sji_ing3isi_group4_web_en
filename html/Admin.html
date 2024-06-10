@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="../css/page.css">
+    <link rel="stylesheet" href="../css/page2.css">
+    <link rel="stylesheet" href="../css/page3.css">
+    <link rel="stylesheet" href="../css/page4.css">
+	<link rel="stylesheet" href="../css/todo.css">
+
+</head>
+<body>
+	<header class="sticky top-0 z-40 bg-white dark:bg-gray-800  ring-1 ring-gray-300 dark:ring-gray-700 shadow-sm" x-data="Components.popover({ open: false, focus: true })" x-init="init()" @keydown.escape="onEscape" @close-popover-group.window="onClosePopoverGroup">
+        <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+              <div class="flex justify-between h-16">
+                <div class="flex px-2 lg:px-0 truncate">
+                    <a href="/" class="flex-shrink-0 flex items-center text-gray-900 dark:text-gray-200">
+                        <img style="scale: 95%; margin-left: -35px;" src="../img/WhatsApp_Image_2023-11-22_at_10.04.11_fb2e6834-removebg-preview.png" alt="">
+                    </a>
+
+                </div>
+                <div class="flex items-center lg:hidden">
+                  <!-- Mobile menu button -->
+                  <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
+                    <span class="sr-only">Open main menu</span>
+                    <svg x-description="" x-state:on="Menu open" x-state:off="Menu closed" class="block h-6 w-6" :class="{ 'hidden': open, 'block': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg x-description="" x-state:on="Menu open" x-state:off="Menu closed" class="hidden h-6 w-6" :class="{ 'block': open, 'hidden': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
+                <div class=" lg:ml-4 lg:flex lg:items-center">
+                    <div class=" lg:flex items-center space-x-3 ">
+                        <a href="/login/" class="button is-transparent">
+                            Axel Limbaime
+                        </a>
+                        <img style="margin-right: 15px;" src="../img/Component16.png" alt="">
+                    </div>
+                </div>
+              </div>
+            </div>
+
+    </header>
+	<div class="flex-auto">
+    <div class="relative max-w-7xl mx-auto px-4 mt-4 sm:px-6 lg:px-8">
+      <div class="wrapper3">
+        <div class="Ti-Candidate" style="text-align: center;">Counts</div>
+        <div class="max-w-3xl mx-auto">
+          <dl class="rounded-lg sm:grid sm:grid-cols-3 sm:divide-x divide-gray-300 dark:divide-gray-700">
+              <div class="flex flex-col p-5 text-center">
+                  <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                      Candidates
+                  </dt>
+                  <dd class="order-1 text-4xl font-extrabold text-indigo-500 dark:text-indigo-400">
+                      3
+                  </dd>
+              </div>
+              <div class="flex flex-col p-5 text-center">
+                  <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                      Polls
+                  </dt>
+                  <dd class="order-1 text-4xl font-extrabold text-indigo-500 dark:text-indigo-400">
+                      4
+                  </dd>
+              </div>
+              <div class="flex flex-col p-5 text-center">
+                  <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                      Votes
+                  </dt>
+                  <dd class="order-1 text-4xl font-extrabold text-indigo-500 dark:text-indigo-400">
+                      260
+                  </dd>
+              </div>
+          </dl>
+      </div>
+    </div>
+  </div>
+		<div class="relative mt-8">
+			<div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="flex space-between">
+          <div class="wrapper1">
+            <div class="flex">
+              <div class="Ti-Candidate">Polls</div>
+              <div class="inputField">
+                <input type="text" id="polsearch" name="polsearch" placeholder="Search for a poll">
+                <a href="#id01">
+                  <button class="" id="polbut">
+                  + Add poll
+                </button>
+                </a>
+              </div>
+            </div>
+            <!--
+              <div class="inputField">
+              <select name="location" id="location" class="box" required>
+                <option value="dou">Douala</option>
+                <option value="yde">Kribi</option>
+                <option value="kri">Yaounde</option>
+                <option value="ede">Edea</option>
+                <option value="dub">Dubai</option>
+                <option value="par">Paris</option>
+              </select>
+              <button class="">
+                + Add Poll
+              </button>
+            </div>
+            -->
+            <div class="infobud" id="error3" style="display: none;">This Contact has already been selected</div>
+            <ul class="todoList">
+              <a href="#id01B">
+                <li>
+                  Saint Jean
+                </li>
+              </a>
+              <a href="#id01B">
+                <li>
+                  Prepa Vogt
+                </li>
+              </a>
+              <a href="#id01B">
+                <li>
+                  Saint Jean
+                </li>
+              </a>
+              <a href="#id01B">
+                <li>
+                  Saint Jean
+                </li>
+              </a>
+            </ul>
+
+            <!--
+              <div class="footer">
+              <span>You have <span class="pendingTasks">2</span> pending
+                tasks
+              </span>
+              <button class="active">Clear All</button>
+            </div>
+            -->
+
+          </div>
+
+          <div class="wrapper2">
+            <div class="flex">
+              <div class="Ti-Candidate">Voters</div>
+              <div class="inputField">
+                <input type="text" id="votsearch" name="votsearch" placeholder="Search for a Voter">
+                <a href="#id02">
+                  <button class="" id="votbut">
+                    + Add Voter
+                  </button>
+                </a>
+              </div>
+            </div>
+            <div class="infobud" id="error3" style="display: none;">This Contact has already been selected</div>
+            <table>
+              <thead class=".thead">
+                <tr>
+                    <th>Voter's Name</th>
+                    <th>Class</th>
+                    <th>School</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            </table>
+            <div class="px-8 scroly">
+              <table class="table no-margin">
+                <tbody class="tbody">
+                    <tr onclick="location.href = '#id02B'">
+                      <td>Laminsi Pokem Yann Kevin</td>
+                      <td>Ing 3 ISI</td>
+                      <td>ISJ</td>
+                      <td>Voted</td>
+                    </tr>
+                    <tr onclick="location.href = '#id02B'">
+                      <td>Ngongang Youmbi Yvan</td>
+                      <td>Ing 3 ISI</td>
+                      <td>Prepa Vogt</td>
+                      <td>Unvoted</td>
+                    </tr>
+                      <tr onclick="location.href = '#id02B'">
+                        <td>Ngongang Youmbi Yvan</td>
+                        <td>Ing 3 ISI</td>
+                        <td>Institut Saint Jean</td>
+                        <td>Unvoted</td>
+                      </tr>
+                </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+
+			</div>
+		</div>
+    <div class="relative mt-8">
+      <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="wrapper3 mb-4">
+          <div class="flex">
+            <div class="Ti-Candidate">Candidates</div>
+            <div class="inputField">
+              <input type="text" id="cansearch" name="cansearch" placeholder="Search for a Candidate">
+              <a href="#id03">
+                <button class="" id="canbut">
+                  + Add Candidate
+                </button>
+              </a>
+            </div>
+          </div>
+          <div class="infobud" id="error3" style="display: none;">This Contact has already been selected</div>
+          <div class="px-8">
+            <table class="table no-margin">
+              <thead class="success">
+                  <tr>
+                      <th>Candidate's Name</th>
+                      <th>Class</th>
+                      <th>School</th>
+                      <th>Number of votes</th>
+                      <th>Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr onclick="location.href = '#editcan'">
+                      <td>Laminsi Pokem Yann Kevin</td>
+                      <td>Ing 3 ISI</td>
+                      <td>ISJ</td>
+                      <td>67,453</td>
+                      <td>Voted</td>
+                  </tr>
+                  <tr onclick="location.href = '#editcan'">
+                    <td>Ngongang Youmbi Yvan</td>
+                    <td>Ing 3 ISI</td>
+                    <td>ISJ</td>
+                    <td>23</td>
+                    <td>Unvoted</td>
+                  </tr>
+              </tbody>
+          </table>
+          </div>
+
+          <div id="id01" class="overlay1">
+            <div class="card" >
+              <div class="wrappy" style="overflow: hidden;">
+                <div class="head" style="text-align:Center;">
+                  New Poll
+                </div>
+                  <form action="">
+                    <div class="form-group justify-content">
+                      <label class="" for="name">Name</label><br>
+                      <input type="text" name="name" id="name" class="box" placeholder="" required>
+                      <div class="infobud" id="error3" style="display: none;">This Poll already exists</div>
+                    </div><br>
+                    <div class="form-group">
+                      <label for="address">Address</label><br>
+                      <input type="text" name="address" id="address" class="form-control box" placeholder="" required>
+                    </div><br><br>
+                  </form>
+                  <div class="form-group flex gap-6">
+                    <label for="" style="color: #fffdfd;">Addres</label>
+                      <button type="submit" class="submit1">Submit</button>
+                      <a href=""><button class="submit2">Cancel</button></a>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div id="id01B" class="overlay1">
+            <div class="card" >
+              <div class="wrappy" style="overflow: hidden;">
+                <div class="head" style="text-align:Center;">
+                  Edit Poll
+                  <a href="" class="close">&times;</a>
+                </div>
+                  <form action="">
+                    <div class="form-group justify-content">
+                      <label class="lble" for="name">Name</label><br>
+                      <input type="text" name="name" id="name" class="box3" placeholder="" required>
+                      <div class="infobud" id="error3" style="display: none;">This Poll already exists</div>
+                    </div><br>
+                    <div class="form-group">
+                      <label class="lble" for="address">Address</label><br>
+                      <input type="text" name="address" id="address" class="form-control box3" placeholder="" required>
+                    </div><br><br>
+                  </form>
+                  <div class="form-group flex gap-6">
+                    <label for="" style="color: #fffdfd;">Addres</label>
+                      <button type="submit" class="submit1">Update</button>
+                      <a href=""><button class="delete">Delete</button></a>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <div id="id02" class="overlay1">
+            <div class="card" >
+              <div class="wrappy" style="overflow: auto;">
+                <div class="head" style="text-align:Center;">
+                  New Voter
+                </div>
+
+                  <form action="">
+                    <div class="form-group flex space-between">
+                      <label for="name">Name</label>
+                      <input type="text" name="name" id="name" class="box" placeholder="">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="email">Email</label>
+                      <input type="email" name="email" id="email" class="form-control box" placeholder="">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="school">School</label>
+                      <select name="school" id="school" class="box" required>
+                        <option value="fra">Saint Jean Institute</option>
+                        <option value="south">Prepa Vogt</option>
+                        <option value="south">Saint Jean Management</option>
+                        <option value="came">Prepa St Jean </option>
+                      </select>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="class">Class</label>
+                      <input type="text" name="class" id="class" class="form-control box" placeholder="">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="pass">Password</label>
+                      <input type="text" name="pass" id="pass" class="form-control box" placeholder="">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                    </div><br>
+                  <div class="form-group flex space-between">
+                    <label for="name">Image</label>
+										<input type="file" id="fileInput" class="box2">
+                  </div>
+                  </form><br>
+                  <div class="form-group flex space-between">
+                    <label for="name" style="color: #fffdfd;">Image</label>
+                    <div class="space-between" style="width: 70%; display: flex;">
+                      <button type="submit" class="submit1">Submit</button>
+                      <a href=""><button type="submit" class="submit2">Cancel</button></a>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div id="id02B" class="overlay1">
+            <div class="card" >
+              <div class="wrappy" style="overflow: auto;">
+                <div class="head" style="text-align:Center;">
+                  Edit Voter
+                  <a href="" class="close">&times;</a>
+                </div>
+                <div class="flex gap-8 p-2 mb-4 prof">
+                  <img src="../img/921314.jpg" alt="" class="pico" style="margin-right: 10px;">
+                  <div>
+                    <p style="font-size: 20px; font-weight: bold;" class="mb-3">Kamdem Jordan</p>
+                    <input type="file" id="fileInput" style="display: none;">
+                    <button onclick="document.getElementById('fileInput').click()" class="submit3">Change</button>
+                  </div>
+                </div>
+                  <form action="">
+                    <div class="form-group flex gap-8 ml-4">
+                      <div>
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" id="name" class="box4" placeholder="">
+                        <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                      </div>
+                      <div>
+                        <label for="email">Email</label><br>
+                        <input type="email" name="email" id="email" class="form-control box4" placeholder="">
+                        <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                      </div>
+                    </div><br>
+                    <div class="form-group flex gap-8 ml-4">
+                      <div>
+                        <label for="school">School</label><br>
+                        <select name="school" id="school" class="box4" required>
+                          <option value="fra">Saint Jean Institute</option>
+                          <option value="south">Prepa Vogt</option>
+                          <option value="south">Saint Jean Management</option>
+                          <option value="came">Prepa St Jean </option>
+                        </select>
+                      </div>
+                      <div>
+                          <label for="class">Class</label><br>
+                          <input type="text" name="class" id="class" class="form-control box4" placeholder="">
+                      </div>
+                    </div><br>
+                    <div class="form-group ml-4">
+                      <div>
+                        <label for="pass">Password</label><br>
+                        <input type="text" name="pass" id="pass" class="form-control box5" placeholder="">
+                        <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                      </div>
+                    </div><br>
+                  </form>
+                  <div class="form-group">
+                    <div class="flex space-around">
+                      <button type="submit" class="submit1">Update</button>
+                      <a href=""><button type="submit" class="delete">Delete</button></a>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+
+          <div id="id03" class="overlay1">
+            <div class="card" >
+              <div class="wrappy">
+                <div class="head" style="text-align:Center;">
+                  New Candidate
+                </div>
+                  <form action="">
+                    <div class="form-group flex space-between">
+                      <label for="name">Name</label>
+                      <input type="text" name="name" id="name" class="box" placeholder="">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="email">Email</label>
+                      <input type="email" name="email" id="email" class="form-control box" placeholder="">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="school">School</label>
+                      <select name="school" id="school" class="box" required>
+                        <option value="fra">Saint Jean Institute</option>
+                        <option value="south">Prepa Vogt</option>
+                        <option value="south">Saint Jean Management</option>
+                        <option value="came">Prepa St Jean </option>
+                      </select>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="class">Class</label>
+                      <input type="text" name="class" id="class" class="form-control box" placeholder="">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="pass">Password</label>
+                      <input type="text" name="pass" id="pass" class="form-control box" placeholder="">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="colour">Colour</label>
+                      <input type="color" name="colour" id="colour" class="form-control box" placeholder="" value="#0489d6">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                    </div><br>
+                    <div class="form-group flex space-between">
+                      <label for="des" >Description</label>
+                      <textarea rows="4" cols="39"></textarea>
+                  </div><br>
+                  <div class="form-group flex space-between">
+                    <label for="name">Image</label>
+										<input type="file" id="fileInput" class="box2">
+                  </div>
+                  </form><br>
+                  <div class="form-group flex space-between">
+                    <label for="name" style="color: #fffdfd;">Image</label>
+                    <div class="space-between" style="width: 70%; display: flex;">
+                      <button type="submit" class="submit1">Submit</button>
+                      <a href=""><button type="submit" class="submit2">Cancel</button></a>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div id="editcan" class="overlay1">
+            <div class="card" >
+              <div class="wrappy">
+                <div class="head" style="text-align:Center;">
+                  Edit Candidate
+                  <a href="" class="close">&times;</a>
+                </div>
+                <div class="flex gap-8 p-2 mb-4 prof">
+                  <img src="../img/921314.jpg" alt="" class="pico" style="margin-right: 10px;">
+                  <div>
+                    <p style="font-size: 20px; font-weight: bold;" class="mb-3">Kamdem Jordan</p>
+                    <input type="file" id="fileInput2" style="display: none;">
+                    <button onclick="document.getElementById('fileInput2').click()" class="submit3">Change</button>
+                  </div>
+                </div>
+                  <form action="">
+                    <div class="form-group flex gap-8 ml-4">
+                      <div>
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" id="name" class="box4" placeholder="">
+                        <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                      </div>
+                      <div>
+                        <label for="email">Email</label><br>
+                        <input type="email" name="email" id="email" class="form-control box4" placeholder="">
+                        <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                      </div>
+                    </div><br>
+                    <div class="form-group flex gap-8 ml-4">
+                      <div>
+                        <label for="school">School</label><br>
+                        <select name="school" id="school" class="box4" required>
+                          <option value="fra">Saint Jean Institute</option>
+                          <option value="south">Prepa Vogt</option>
+                          <option value="south">Saint Jean Management</option>
+                          <option value="came">Prepa St Jean </option>
+                        </select>
+                      </div>
+                      <div>
+                          <label for="class">Class</label><br>
+                          <input type="text" name="class" id="class" class="form-control box4" placeholder="">
+                      </div>
+                    </div><br>
+                    <div class="form-group flex gap-8 ml-4">
+                      <div>
+                        <label for="pass">Password</label><br>
+                      <input type="text" name="pass" id="pass" class="form-control box4" placeholder="">
+                      <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
+                      </div>
+                      <div>
+                        <label for="colour">Colour</label><br>
+                        <input type="color" name="colour" id="colour" class="form-control box4" placeholder="" value="#0489d6">
+                      </div>
+                    </div><br>
+                    <div class="form-group ml-4">
+                      <label for="des" >Description</label><br>
+                      <textarea rows="4" cols="55"></textarea>
+                  </div><br>
+                  </form>
+                  <div class="form-group">
+                    <div class="flex space-around">
+                      <button type="submit" class="submit1">Update</button>
+                      <a href=""><button type="submit" class="delete">Delete</button></a>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+	</div>
+</body>
+</html>
