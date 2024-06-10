@@ -1,1 +1,1 @@
-# Voting-App
+# Decentralize voting System
