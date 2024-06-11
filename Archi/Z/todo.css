@@ -1,0 +1,144 @@
+.wrapper {
+    background: #fff;
+    max-width: 400px;
+    width: 100%;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+.inputField {
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    height: 45px;
+}
+input {
+    width: 85%;
+    height: 100%;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+select {
+    width: 85%;
+    height: 100%;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+.inputField button {
+    width: 50px;
+    height: 100%;
+    border: none;
+    color: #fff;
+    margin-left: 5px;
+    font-size: 21px;
+    outline: none;
+    background: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s ;
+}
+
+.fa-plus:before {
+    content: "\f067";
+}
+ .fas {
+    font-weight: 900;
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free";
+}
+.fa, .fab, .fad, .fal, .far, .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.wrapper .todoList {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+}
+.todoList li .icon {
+    position: absolute;
+    right: -45px;
+    background-color: #feae96;
+    width: 45px;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-image: linear-gradient(315deg, #feae96 0%, #fe0944 74%);
+}
+.fa-trash:before {
+    content: "\f1f8";
+}
+.footer {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer button {
+    padding: 6px 10px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 5px;
+    background: linear-gradient(315deg, #fe0944 0%, #feae96 74%);
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+::selection {
+    color: #ffff;
+    background: rgb(142, 73, 232);
+}
+.todoList li {
+    position: relative;
+    list-style: none;
+    height: 45px;
+    line-height: 45px;
+    margin-bottom: 8px;
+    background: #f2f2f2;
+    border-radius: 3px;
+    padding: 0 15px;
+    cursor: default;
+    overflow: hidden;
+}
+.todoList li:hover .icon{
+    right: 0px;
+}
+.infobud{
+    position: relative;
+    font-size: 18px;
+    padding-top: 5px;
+    font-weight: bold;
+    color: red;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <div class="wrapper">
+		<header>Todo List</header>
+		<div class="inputField">
+			<select name="location" id="location" class="box" required>
+                <option value="dou">Douala</option>
+                <option value="yde">Kribi</option>
+                <option value="kri">Yaounde</option>
+                <option value="ede">Edea</option>
+                <option value="dub">Dubai</option>
+                <option value="par">Paris</option>
+            </select>
+			<button class="">
+				<i class="fas fa-plus"></i>
+			</button>
+		</div>
+        <div class="infobud" id="error3" style="display: none;">This Contact has already been selected</div>
+		<ul class="todoList"></ul>
+		<div class="footer">
+			<span>You have <span class="pendingTasks">2</span> pending
+				tasks
+			</span>
+			<button class="active">Clear All</button>
+		</div>
+	</div>
+
+    <script>
+        //getting all required elements
+        const inputBox = document.querySelector(".inputField select");
+        const addBtn = document.querySelector(".inputField button");
+        const todoList = document.querySelector(".todoList");
+        const deleteAllBtn = document.querySelector(".footer button");
+        addBtn.disabled =
+
+        // onkeyup event
+
+        showTasks(); //calling showTask function
+
+
+        addBtn.onclick = ()=>{ //when user click on plus icon button
+          var num = inputBox.selectedIndex;
+          var userEnteredValue = inputBox.options[num].text; //getting input field value
+          let getLocalStorageData = localStorage.getItem("New Todo"); //getting localstorage
+          if(getLocalStorageData == null){ //if localstorage has no data
+            listArray = []; //create a blank array
+          }else{
+            listArray = JSON.parse(getLocalStorageData);  //transforming json string into a js object
+          }
+          if(listArray.includes(userEnteredValue)){
+            document.getElementById('error3').style.display = 'block';
+          }
+          else
+          {
+            document.getElementById('error3').style.display = 'none';
+            listArray.push(userEnteredValue); //pushing or adding new value in array
+            localStorage.setItem("New Todo", JSON.stringify(listArray)); //transforming js object into a json string
+            showTasks(); //calling showTask function
+          }
+        }
+
+        function showTasks(){
+          let getLocalStorageData = localStorage.getItem("New Todo");
+          if(getLocalStorageData == null){
+            listArray = [];
+          }else{
+            listArray = JSON.parse(getLocalStorageData);
+          }
+          const pendingTasksNumb = document.querySelector(".pendingTasks");
+          pendingTasksNumb.textContent = listArray.length; //passing the array length in pendingtask
+          let newLiTag = "";
+          listArray.forEach((element, index) => {
+            newLiTag += `<li>${element}<span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span></li>`;
+          });
+          todoList.innerHTML = newLiTag; //adding new li tag inside ul tag
+        }
+
+        // delete task function
+        function deleteTask(index){
+          let getLocalStorageData = localStorage.getItem("New Todo");
+          listArray = JSON.parse(getLocalStorageData);
+          listArray.splice(index, 1); //delete or remove the li
+          localStorage.setItem("New Todo", JSON.stringify(listArray));
+          showTasks(); //call the showTasks function
+        }
+
+        // delete all tasks function
+        deleteAllBtn.onclick = ()=>{
+          listArray = []; //empty the array
+          localStorage.setItem("New Todo", JSON.stringify(listArray)); //set the item in localstorage
+          showTasks(); //call the showTasks function
+        }
+
+        </script>
+</body>
+</html>
