@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Statistics</title>
+
+	<link rel="stylesheet" href="../css/page.css">
+    <link rel="stylesheet" href="../css/page2.css">
+    <link rel="stylesheet" href="../css/page3.css">
+    <link rel="stylesheet" href="../css/page4.css">
+	<link rel="stylesheet" href="../css/Stat.css">
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
+
+</head>
+<body>
+	<header class="sticky top-0 z-40 bg-white dark:bg-gray-800  ring-1 ring-gray-300 dark:ring-gray-700 shadow-sm" x-data="Components.popover({ open: false, focus: true })" x-init="init()" @keydown.escape="onEscape" @close-popover-group.window="onClosePopoverGroup">
+        <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+              <div class="flex justify-between h-16">
+                <div class="flex px-2 lg:px-0 truncate">
+                    <a href="/" class="flex-shrink-0 flex items-center text-gray-900 dark:text-gray-200">
+                        <img style="scale: 95%; margin-left: -35px;" src="../img/WhatsApp_Image_2023-11-22_at_10.04.11_fb2e6834-removebg-preview.png" alt="">
+                    </a>
+
+                </div>
+                <div class="flex items-center lg:hidden">
+                  <!-- Mobile menu button -->
+                  <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
+                    <span class="sr-only">Open main menu</span>
+                    <svg x-description="" x-state:on="Menu open" x-state:off="Menu closed" class="block h-6 w-6" :class="{ 'hidden': open, 'block': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg x-description="" x-state:on="Menu open" x-state:off="Menu closed" class="hidden h-6 w-6" :class="{ 'block': open, 'hidden': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
+                <div class=" lg:ml-4 lg:flex lg:items-center">
+                    <div class=" lg:flex items-center space-x-3 ">
+                        <a href="/login/" class="button is-transparent">
+                            Axel Limbaime
+                        </a>
+                        <img style="margin-right: 15px;" src="../img/Component16.png" alt="">
+                    </div>
+                </div>
+              </div>
+            </div>
+
+    </header>
+	<div class="flex-auto">
+    <div class="relative mt-8">
+      <div class="max-w-7xl text-center mx-auto px-4 lg:px-8">
+        <div class="section-heading">
+          <h2  class="t-head">Election Statistics</h2>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="relative mt-8">
+      <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="wrapper3 mb-4">
+          <div class="text-center">
+            <div class="Ti-Candidate">Polls</div>
+          </div>
+          <div class="infobud" id="error3" style="display: none;">This Contact has already been selected</div>
+          <div class="px-8">
+            <table class="table no-margin">
+              <thead class="success">
+                  <tr>
+                      <th>Poll's Name</th>
+                      <th>No registered</th>
+                      <th>Number of votes</th>
+                  </tr>
+              </thead>
+              <tbody id="polls">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="result1" >
+      <div class="max-w-7xl mx-auto pb-16 px-4 sm:px-6 lg:px-8">
+          <div div class="col-lg-12 text-center">
+              <div class="section-heading">
+                  <h2 class="t-head">Results</h2>
+
+                  <p class="text-muted">Here are the different Candidates running for the post of president </p>
+                  <hr>
+              </div >
+            </div >
+            <div class="row space-between " id="candidatestats">
+
+
+
+
+
+          </div>
+      </div>
+  </div>
+	</div>
+  </div>
+  <script src="../js/stats.js"></script>
+</body>
+</html>

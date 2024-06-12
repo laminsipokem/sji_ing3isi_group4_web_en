@@ -1,0 +1,430 @@
+body{
+    background: #f8f9fa;
+}
+.wrapper1 {
+    background: #fff;
+    max-width: 500px;
+    width: 100%;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+.wrapper2 {
+    background: #fff;
+    max-width: 650px;
+    width: 100%;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+.wrapper3 {
+    background: #fff;
+    width: 100%;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+.wrapper4 {
+    background: #fff;
+    width: 600px;
+    min-height: 250px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+.inputField {
+    width: 100%;
+    display: flex;
+    height: 45px;
+}
+
+input[type = 'text'] {
+    width: 75%;
+    height: 100%;
+    box-shadow: 1px 1px 1px  rgb(207, 206, 204);
+    border: 1px solid #ced4da;
+    border-radius:  0.25rem;
+    outline: none;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+input[type = 'file'] {
+    width: 75%;
+    height: 30px;
+    box-shadow: 1px 1px 1px  rgb(207, 206, 204);
+    margin-left: 2px;
+    border: 1px solid #ced4da;
+    border-radius:  0.25rem;
+    outline: none;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+input[type = 'email'] {
+    width: 75%;
+    height: 100%;
+    box-shadow: 1px 1px 1px  rgb(207, 206, 204);
+    border: 1px solid #ced4da;
+    border-radius:  0.25rem;
+    outline: none;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+input[type = 'color'] {
+    width: 75%;
+    height: 100%;
+    box-shadow: 1px 1px 1px  rgb(207, 206, 204);
+    border: 1px solid #ced4da;
+    border-radius:  0.25rem;
+    outline: none;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+textarea {
+    box-shadow: 1px 1px 1px  rgb(207, 206, 204);
+    border: 1px solid #ced4da;
+    border-radius:  0.25rem;
+    outline: none;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+select {
+    width: 85%;
+    height: 100%;
+    box-shadow: 1px 1px 1px  rgb(207, 206, 204);
+    border: 1px solid #ced4da;
+    border-radius:  0.25rem;
+    outline: none;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+.inputField button {
+    width: 190px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: none;
+    color: #fff;
+    margin-left: 5px;
+    font-size: 21px;
+    outline: none;
+    background: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s ;
+}
+.Ti-Candidate{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-right: 2rem;
+}
+.fa-plus:before {
+    content: "\f067";
+}
+ .fas {
+    font-weight: 900;
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free";
+}
+.fa, .fab, .fad, .fal, .far, .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.wrapper1 .todoList {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+}
+.todoList li .icon {
+    position: absolute;
+    right: -45px;
+    background-color: #feae96;
+    width: 45px;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-image: linear-gradient(315deg, #feae96 0%, #fe0944 74%);
+}
+.fa-trash:before {
+    content: "\f1f8";
+}
+.footer {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer button {
+    padding: 6px 10px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 5px;
+    background: linear-gradient(315deg, #fe0944 0%, #feae96 74%);
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+::selection {
+    color: #ffff;
+    background: rgb(142, 73, 232);
+}
+.todoList{
+    height: 200px;
+}
+.todoList li {
+    position: relative;
+    list-style: none;
+    height: 45px;
+    line-height: 45px;
+    margin-bottom: 8px;
+    background: #f2f2f2;
+    border-radius: 3px;
+    padding: 0 15px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.todoList li:hover .icon{
+    right: 0px;
+}
+.infobud{
+    position: relative;
+    font-size: 18px;
+    padding-top: 5px;
+    font-weight: bold;
+    color: red;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 2rem;
+    justify-content: center;
+}
+.table1 {
+    border-collapse: collapse;
+    width: 100%;
+    justify-content: center;
+}
+
+::-webkit-scrollbar{
+    width: 12px;
+    position: relative;
+    left: 20px;
+    margin-left: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #d3cfcf;
+    border-radius: 2rem;
+
+}
+table th {
+    /* border-top: 1px solid var(--second-bg-color); */
+    border-bottom: 1px solid #f1f1f1;
+    padding: 5px 5px 12px 2px;
+    text-align: center;
+    width: 20%;
+}
+table td {
+    /* border-top: 1px solid var(--second-bg-color); */
+    border-bottom: 1px solid #f1f1f1;
+    padding: 5px 5px 12px 2px;
+    text-align: center;
+    width: 20%;
+}
+tbody tr:hover{
+    cursor: pointer;
+    background: #f4f5f7;
+    border-radius: 20px;
+}
+.thead, .tbody{
+
+}
+.tbody {
+    position: relative;
+    bottom: 40px;
+    overflow-y: scroll;
+    height: 100px;
+}
+
+.overlay1{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+.overlay1:target{
+    visibility: visible;
+    opacity: 1;
+}
+.wrappy{
+    margin: 100px auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    background: #fffdfd;
+    border-radius: 5px;
+    width:50%;
+    position: relative;
+    transition: all 2s;
+    overflow-y: scroll;
+    max-height: 520px;
+}
+label{
+    font-size: 20px;
+}
+.pico{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.form-group .box{
+    height: 30px;
+    width: 400px;
+}
+.form-group .box3{
+    height: 30px;
+    width: 400px;
+    position: relative;
+    left: 78px;
+}
+.form-group .box4{
+    height: 30px;
+    width: 260px;
+}
+.form-group .box2{
+    height: 27px;
+    width: 400px;
+}
+.form-group .box5{
+    height: 27px;
+    width: 552px;
+}
+.submit1{
+    width: 180px;
+    height: 32px;
+    background: #0489d6;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.submit1:hover{
+    background: white;
+    color: #0489d6;
+    border: 1px solid #0489d6;
+}
+.submit2{
+    width: 180px;
+    height: 32px;
+    background: white;
+    border-radius: 5px;
+    color:  #0489d6;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #0489d6;
+}
+.submit2:hover{
+    background:  #f5f6f7;
+}
+.submit3{
+    width: 180px;
+    height: 32px;
+    background: #c6cec6;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.submit3:hover{
+    background: white;
+    color: #9ba79a;
+    border: 1px solid #9ba79a;
+}
+.delete{
+    width: 180px;
+    height: 32px;
+    background: #d60404;
+    border-radius: 5px;
+    color:  White;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.delete:hover{
+    background:  #f5f6f7;
+    color: #d60404;
+    border: 1px solid #d60404;
+}
+.prof{
+    border-top: 1px solid #ebecec;
+    border-bottom: 1px solid #ebecec;
+}
+.head{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 28px;
+    font-weight: bolder;
+    color: #0489d6;
+}
+.scroly{
+    max-height: 150px;
+    overflow-y: auto;
+}
+.lble{
+    font-size: 20px;
+    position: relative;
+    left: 80px;
+    margin-bottom: 5px;
+}
+#id01 form {
+    padding-left: 80px;
+}
+#id01 .wrappy {
+    margin-top: 120px;
+}
+.space-around{
+    justify-content: space-around;
+}
+.close{
+    position: relative;
+    left: 185px;
+    font-size: 28px;
+    color: #8e8f8f;
+}

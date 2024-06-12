@@ -5,12 +5,13 @@ pragma solidity >=0.8.2 <0.9.0;
  {
     uint public candidatenum=0;
     uint public voternum=0;
-    uint public pollnum=0;
+
     uint public voterid=1;
     uint public pollid=1;
     uint public votenum;
     address public owner;
     mapping (uint=> poll)public polls;
+    uint public pollnum=0;
     mapping (uint=> voter)public voters;
     mapping (uint=> candidate)public candidates;
     modifier onlyOwner()
@@ -41,7 +42,7 @@ pragma solidity >=0.8.2 <0.9.0;
         bool voted;
         string poll;
         uint candidate;
-
+string image;
     }
     struct candidate
     {
@@ -56,15 +57,17 @@ pragma solidity >=0.8.2 <0.9.0;
         string colour;
         uint candidate;
         string description;
+        string image;
     }
     function addpolls(string memory name,address _address) onlyOwner external
     {
+        require(findpoll(name)==0,"this poll already exists");
         polls[pollid].name=name;
         polls[pollid]._address=_address;
         pollnum++;
         pollid++;
     }
-    function addvoters( string memory name,string memory classe,string memory email,string memory password,string memory pol) onlyOwner external
+    function addvoters( string memory name,string memory classe,string memory email,string memory password,string memory pol,string memory image) onlyOwner external
     {
         require(check(name,email),"this name or email  is already used in the system");
          require(findpoll(pol)!=0,"this poll is not existing");
@@ -75,14 +78,15 @@ pragma solidity >=0.8.2 <0.9.0;
         voters[voterid].email=email;
         voters[voterid].password=password;
         voters[voterid].poll=pol;
+        voters[voterid].image=image;
         voters[voterid].voted=false;
-
+        polls[findpoll(pol)].regisnum++;
         voterid++;
     }
-    function addcandidates(string memory name,string memory classe,string memory email,string memory password,string memory colour,string memory description,string memory pol) onlyOwner external
+    function addcandidates(string memory name,string memory classe,string memory email,string memory password,string memory colour,string memory description,string memory pol,string memory image) onlyOwner external
     {
         require(check(name,email),"this name or email is already used in the system");
-        require(findpoll(pol)==0,"this poll is not existing");
+        require(findpoll(pol)!=0,"this poll is not existing");
         candidatenum++;
         candidates[voterid].id=voterid;
         candidates[voterid].name=name;
@@ -93,7 +97,9 @@ pragma solidity >=0.8.2 <0.9.0;
         candidates[voterid].description=description;
         candidates[voterid].voted=false;
         candidates[voterid].voteCount=0;
-        voters[voterid].poll=pol;
+        candidates[voterid].poll=pol;
+        candidates[voterid].image=image;
+         polls[findpoll(pol)].regisnum++;
         voterid++;
     }
     function check(string memory name,string memory email) internal view returns (bool)
@@ -161,7 +167,7 @@ pragma solidity >=0.8.2 <0.9.0;
         voters[Voter].voted=true;
         voters[Voter].candidate=Candidate;
          candidates[Candidate].voteCount=candidates[Candidate].voteCount+1;
-        polls[findpoll(voters[Voter].poll)].votenum= polls[findpoll(voters[Voter].poll)].votenum+1;
+
         }
         else if((bytes(candidates[Voter].name).length != 0))
         {
@@ -169,7 +175,7 @@ pragma solidity >=0.8.2 <0.9.0;
          require(!candidates[Voter].voted,"this voter already voted");
         require((bytes(candidates[Voter].name).length != 0), "Voter does not exist");
         candidates[Voter].voted=true;
-        polls[findpoll(candidates[Voter].poll)].votenum= polls[findpoll(candidates[Voter].poll)].votenum+1;
+
         candidates[Voter].candidate=Candidate;
          candidates[Candidate].voteCount=candidates[Candidate].voteCount+1;
         }
@@ -191,7 +197,7 @@ pragma solidity >=0.8.2 <0.9.0;
         delete polls[id];
         pollnum--;
     }
-function updatecandidates(uint id,string memory name,string memory classe,string memory email,string memory password,string memory colour,string memory description) onlyOwner external
+function updatecandidates(uint id,string memory name,string memory classe,string memory email,string memory password,string memory colour,string memory description,string memory image) onlyOwner external
     {
         candidates[id].name=name;
         candidates[id].classe=classe;
@@ -199,6 +205,7 @@ function updatecandidates(uint id,string memory name,string memory classe,string
         candidates[id].password=password;
         candidates[id].colour=colour;
         candidates[id].description=description;
+        candidates[id].image=image;
          }
          function updatepolls(uint id,string memory name,address _address) onlyOwner external
     {
@@ -206,12 +213,13 @@ function updatecandidates(uint id,string memory name,string memory classe,string
         polls[id].name=name;
         polls[id]._address=_address;
     }
-    function updatevoters( uint id,string memory name,string memory classe,string memory email,string memory password) onlyOwner external
+    function updatevoters( uint id,string memory name,string memory classe,string memory email,string memory password,string memory image) onlyOwner external
     {
         voters[id].name=name;
         voters[id].classe=classe;
         voters[id].email=email;
         voters[id].password=password;
+        voters[id].image=image;
     }
     function finduser(string memory email) public view returns(uint){
          for(uint i=0;i<voterid;i++)
@@ -264,5 +272,25 @@ function candelpol(string memory _name) public view returns (bool)
             }
         }
         return vot && cans;
+}
+
+function findstat(string memory _name,uint id) public view returns (uint)
+{
+    uint count;
+    for(uint i=0;i<voterid;i++)
+        {
+           if(keccak256(abi.encodePacked(voters[i].poll)) == keccak256(abi.encodePacked(_name)) && voters[i].candidate==id && voters[i].voted)
+            {
+                count++;
+            }
+        }
+         for(uint i=0;i<voterid;i++)
+        {
+           if(keccak256(abi.encodePacked(candidates[i].poll)) == keccak256(abi.encodePacked(_name)) && candidates[i].candidate==id && candidates[i].voted)
+            {
+                count++;
+            }
+        }
+        return count;
 }
  }

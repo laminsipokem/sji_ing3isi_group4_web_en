@@ -1,4 +1,3 @@
-
 window.addEventListener('load', async () => {
     // Modern dapp browsers...
     if (window.ethereum) {
@@ -689,68 +688,190 @@ window.addEventListener('load', async () => {
     // Initialize contract instance
     const contract = new web3.eth.Contract(abi, contractAddress);
 
-    // Set default account
-    const accounts = await web3.eth.getAccounts();
-    web3.eth.defaultAccount = accounts[0];
-    //alert("yo2");
-    document.getElementById('loginButton').addEventListener('click', login);
-    async function login() {
-        try {
-            let isLoginSuccessful=false;
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            if(username=="laminsikevin@gmail.com" && password=="1234")
-                {
-                    window.location.href = '../html/Statistics.html';
-                    isLoginSuccessful=true
-                }
-
-            // Initialize the login status variable
 
 
-            // Ensure username and password are not empty
-            if (username && password) {
+const pollList = document.getElementById('polls');
+pollList.innerHTML = ''; // Clear the li
+const pollid = await contract.methods.pollnum().call();
+const polls = [];
+const sh2 = document.createElement('a');
+pollList.appendChild(sh2);
+sh2.setAttribute("href","#id02B");
+for (let i = 1; i <= pollid; i++) {
 
-                // Attempt to login using the contract method
-
-               isLoginSuccessful = await contract.methods.login(username, password).call();
-
-            }
-
-
-            console.log('Login attempt:', isLoginSuccessful);
-
-            if (isLoginSuccessful) {
-                // Fetch user ID if login is successful
-                const id = await contract.methods.finduser(username).call();
-                let user = await contract.methods.voters(id).call();
-
-if(user.name=='')
-    {
-
-        user = await contract.methods.candidates(id).call();
-    }
-
-                // Store user ID in local storage
-                localStorage.setItem('user',JSON.stringify(user));
+const poll = await contract.methods.polls(i).call();
+if(poll.name!='')
+{
 
 
-                // Redirect to the new page
-                window.location.href = '../html/Page.html';
+    var tr = document.createElement('tr');
+tr.dataset.href = '#id02B';
 
-                // Reset the form fields
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
-            } else {
-                // Show an alert if login fails
-                alert('Login failed. Please check your username and password.');
-            }
-        } catch (error) {
-            // Log any errors that occur during the login process
-            console.error('An error occurred during the login process:', error);
-            alert('An error occurred. Please try again later.');
-        }
-    }
+// Create td elements and add text content
+var td1 = document.createElement('td');
+td1.textContent = poll.name;
 
+var td2 = document.createElement('td');
+td2.textContent =poll.regisnum;
+
+var td3 = document.createElement('td');
+td3.textContent = poll.votenum;
+
+
+// Append td elements to tr
+tr.appendChild(td1);
+tr.appendChild(td2);
+tr.appendChild(td3);
+
+// Append tr to tbody
+pollList.appendChild(tr);
+polls.push(poll);
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+ // Clear the li
+const voterid = await contract.methods.voterid().call();
+const candidates = [];
+for (let i = 1; i <= voterid; i++) {
+
+const candidate = await contract.methods.candidates(i).call();
+if(candidate.name!='')
+{
+    //candidate.id=voterid;
+candidates.push(candidate);
+}
+}
+
+
+for (const candidate of candidates)
+ {
+    const can=document.getElementById("candidatestats");
+    const cardDiv = document.createElement('div');
+    const main = document.createElement('div');
+    main.className = 'col-lg-4 col-md-6 mb-4 wrapper4';
+    cardDiv.className = 'm-0 rounded bg-white ';
+    const cardDiv2 = document.createElement('div');
+    cardDiv2.className = 'votcard flex space-between';
+    // Create the left section
+    const leftDiv = document.createElement('div');
+
+    // Create and append the image
+    const img = document.createElement('img');
+    img.className = 'rounded-pill max-130 p-2';
+    img.src = '../img/I1.jpg';
+    img.alt = '';
+    leftDiv.appendChild(img);
+
+    // Create and append the text container
+    const textContainer = document.createElement('div');
+    textContainer.className = 'pad-12';
+
+    const nameHeading = document.createElement('h4');
+    nameHeading.className = 'mt-3 fs-5 mb-1 fw-bold';
+    nameHeading.textContent = candidate.name;
+    textContainer.appendChild(nameHeading);
+
+    const votesParagraph = document.createElement('p');
+    const span = document.createElement('span');
+    span.textContent=candidate.voteCount;
+    span.style.color=candidate.colour;
+    span.style.fontWeight="bolder";
+    votesParagraph.className = 'fs-8 mb-2 votext';
+    votesParagraph.textContent = 'Votes: ';
+
+    votesParagraph.appendChild(span);
+    textContainer.appendChild(votesParagraph);
+
+    leftDiv.appendChild(textContainer);
+
+    // Create the right section
+    const rightDiv = document.createElement('div');
+
+    // Create and append the static table header
+    const table = document.createElement('table');
+    table.style.width = '270px';
+
+    const thead = document.createElement('thead');
+    thead.className = '.thead';
+
+    const tr = document.createElement('tr');
+
+    const th1 = document.createElement('th');
+    th1.textContent = "Poll's Name";
+    tr.appendChild(th1);
+
+    const th2 = document.createElement('th');
+    th2.textContent = 'No of Votes';
+    tr.appendChild(th2);
+
+    thead.appendChild(tr);
+    table.appendChild(thead);
+
+    rightDiv.appendChild(table);
+
+    // Create and append the scrollable div
+    const scrolyDiv = document.createElement('div');
+    scrolyDiv.className = 'scroly';
+
+    const scrollTable = document.createElement('table');
+    scrollTable.className = 'table1 no-margin';
+
+    const tbody = document.createElement('tbody');
+    tbody.className = 'tbody';
+
+    // Example data for the scrollable table
+
+
+   for (const poll of polls) {
+
+        const tr = document.createElement('tr');
+
+        const td1 = document.createElement('td');
+        td1.textContent = poll.name;
+        tr.appendChild(td1);
+        const count = await contract.methods.findstat(poll.name,candidate.id).call();
+        const td2 = document.createElement('td');
+        td2.textContent = count;
+        tr.appendChild(td2);
+
+        tbody.appendChild(tr);
+    };
+
+    scrollTable.appendChild(tbody);
+    scrolyDiv.appendChild(scrollTable);
+    rightDiv.appendChild(scrolyDiv);
+
+    // Append left and right sections to the main card
+    cardDiv2.appendChild(leftDiv);
+    cardDiv2.appendChild(rightDiv);
+    cardDiv.appendChild(cardDiv2);
+    main.appendChild(cardDiv)
+    // Append the main card to the body or a specific container
+    can.appendChild(main);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+console.log(candidates);
+console.log(polls);
 });

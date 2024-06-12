@@ -2,9 +2,9 @@ function updateTime() {
     const now = new Date();
     let timeleftString = "00hrs 00min 00s";
 
-    if (now.getHours() >= 8 && now.getHours() <17) {
+    if (now.getHours() >= 8 && now.getHours() <19) {
         const then = new Date();
-        then.setHours(17, 0, 0);
+        then.setHours(19, 0, 0);
 
         const timeleft = new Date(then - now);
         const hours = Math.floor((timeleft / (1000 * 60 * 60)) % 24).toString().padStart(2, '0');

@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="../css/page3.css">
     <link rel="stylesheet" href="../css/page4.css">
 	<link rel="stylesheet" href="../css/todo.css">
+  <script src="https://cdn.jsdelivr.net/npm/ipfs-http-client@54.0.1/dist/index.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/dist/buffer.min.js"></script>
+
 </head>
 <body>
 	<header class="sticky top-0 z-40 bg-white dark:bg-gray-800  ring-1 ring-gray-300 dark:ring-gray-700 shadow-sm" x-data="Components.popover({ open: false, focus: true })" x-init="init()" @keydown.escape="onEscape" @close-popover-group.window="onClosePopoverGroup">
@@ -153,24 +157,7 @@
             <div class="px-8 scroly">
               <table class="table no-margin" >
                 <tbody class="tbody" id="voters">
-                    <tr onclick="location.href = '#id02B'">
-                      <td>Laminsi Pokem Yann Kevin</td>
-                      <td>Ing 3 ISI</td>
-                      <td>ISJ</td>
-                      <td>Voted</td>
-                    </tr>
-                    <tr onclick="location.href = '#id02B'">
-                      <td>Ngongang Youmbi Yvan</td>
-                      <td>Ing 3 ISI</td>
-                      <td>Prepa Vogt</td>
-                      <td>Unvoted</td>
-                    </tr>
-                      <tr onclick="location.href = '#id02B'">
-                        <td>Ngongang Youmbi Yvan</td>
-                        <td>Ing 3 ISI</td>
-                        <td>Institut Saint Jean</td>
-                        <td>Unvoted</td>
-                      </tr>
+
                 </tbody>
             </table>
             </div>
@@ -205,21 +192,8 @@
                       <th>Status</th>
                   </tr>
               </thead>
-              <tbody>
-                  <tr onclick="location.href = '#editcan'">
-                      <td>Laminsi Pokem Yann Kevin</td>
-                      <td>Ing 3 ISI</td>
-                      <td>ISJ</td>
-                      <td>67,453</td>
-                      <td>Voted</td>
-                  </tr>
-                  <tr onclick="location.href = '#editcan'">
-                    <td>Ngongang Youmbi Yvan</td>
-                    <td>Ing 3 ISI</td>
-                    <td>ISJ</td>
-                    <td>23</td>
-                    <td>Unvoted</td>
-                  </tr>
+              <tbody id="candidates">
+
               </tbody>
           </table>
           </div>
@@ -233,17 +207,17 @@
                   <form action="">
                     <div class="form-group justify-content">
                       <label class="" for="name">Name</label><br>
-                      <input type="text" name="name" id="name" class="box" placeholder="" required>
+                      <input type="text" name="cpname" id="cpname" class="box" placeholder="" required>
                       <div class="infobud" id="error3" style="display: none;">This Poll already exists</div>
                     </div><br>
                     <div class="form-group">
                       <label for="address">Address</label><br>
-                      <input type="text" name="address" e class="form-control box" placeholder="" required>
+                      <input type="text" name="cpaddress" id="cpaddress" e class="form-control box" placeholder="" required>
                     </div><br><br>
                   </form>
                   <div class="form-group flex gap-6">
                     <label for="" style="color: #fffdfd;">Addres</label>
-                      <button type="submit" class="submit1">Submit</button>
+                      <button type="submit" class="submit1" id="createpoll">Submit</button>
                       <a href=""><button class="submit2">Cancel</button></a>
                   </div>
 
@@ -259,20 +233,23 @@
                   <a href="" class="close">&times;</a>
                 </div>
                   <form action="">
+
                     <div class="form-group justify-content">
+                      <input type="number" name="id" id="epid" class="box3" placeholder="" style="display: none;" required>
                       <label class="lble" for="name">Name</label><br>
-                      <input type="text" name="name" id="namep" class="box3" placeholder="" required>
+                      <input type="text" name="name" id="epname" class="box3" placeholder="" required>
                       <div class="infobud" id="error3" style="display: none;">This Poll already exists</div>
                     </div><br>
                     <div class="form-group">
                       <label class="lble" for="address">Address</label><br>
-                      <input type="text" name="address" id="addressp" class="form-control box3" placeholder="" required>
+                      <input type="text" name="address" id="epaddress" class="form-control box3" placeholder="" required>
                     </div><br><br>
+
                   </form>
                   <div class="form-group flex gap-6">
                     <label for="" style="color: #fffdfd;">Addres</label>
-                      <button type="submit" class="submit1">Update</button>
-                      <a href=""><button class="delete">Delete</button></a>
+                      <button type="submit" class="submit1" id="editpoll">Update</button>
+                      <a href=""><button class="delete" id="deletepoll">Delete</button></a>
                   </div>
 
               </div>
@@ -291,42 +268,39 @@
                   <form action="">
                     <div class="form-group flex space-between">
                       <label for="name">Name</label>
-                      <input type="text" name="name" id="name" class="box" placeholder="">
+                      <input type="text" name="name" id="cvname" class="box" placeholder="">
                       <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
                     </div><br>
                     <div class="form-group flex space-between">
                       <label for="email">Email</label>
-                      <input type="email" name="email" id="email" class="form-control box" placeholder="">
+                      <input type="email" name="email" id="cvemail" class="form-control box" placeholder="">
                       <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
                     </div><br>
                     <div class="form-group flex space-between">
                       <label for="school">School</label>
-                      <select name="school" id="school" class="box" required>
-                        <option value="fra">Saint Jean Institute</option>
-                        <option value="south">Prepa Vogt</option>
-                        <option value="south">Saint Jean Management</option>
-                        <option value="came">Prepa St Jean </option>
+                      <select name="school" id="cvschool" class="box" required>
+
                       </select>
                     </div><br>
                     <div class="form-group flex space-between">
                       <label for="class">Class</label>
-                      <input type="text" name="class" id="class" class="form-control box" placeholder="">
+                      <input type="text" name="class" id="cvclass" class="form-control box" placeholder="">
                       <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
                     </div><br>
                     <div class="form-group flex space-between">
                       <label for="pass">Password</label>
-                      <input type="text" name="pass" id="pass" class="form-control box" placeholder="">
+                      <input type="text" name="pass" id="cvpass" class="form-control box" placeholder="" readonly>
                       <div class="infobud" id="error3" style="display: none;">This Venue already exists</div>
                     </div><br>
                   <div class="form-group flex space-between">
                     <label for="name">Image</label>
-										<input type="file" id="fileInput" class="box2">
+										<input type="file" id="cvimage" class="box2">
                   </div>
                   </form><br>
                   <div class="form-group flex space-between">
                     <label for="name" style="color: #fffdfd;">Image</label>
                     <div class="space-between" style="width: 70%; display: flex;">
-                      <button type="submit" class="submit1">Submit</button>
+                      <button type="submit" class="submit1" id="createvoter">Submit</button>
                       <a href=""><button type="submit" class="submit2">Cancel</button></a>
                     </div>
                   </div>
@@ -535,6 +509,15 @@
       </div>
     </div>
 	</div>
+  <script>
+    const { Ipfs } = window.ipfsHttpClient;
+    const ipfs = new Ipfs({
+      host: 'ipfs.infura.io',
+      port: 5001,
+      protocol: 'https'
+    });
+    // Now you can use the ipfs object
+  </script>
   <script src="../js/Admin.js"></script>
 </body>
 </html>

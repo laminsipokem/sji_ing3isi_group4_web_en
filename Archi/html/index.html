@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="../css/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
+  <title>Login Page</title>
+</head>
+<body>
+    <section>
+        <img src="../img/WhatsApp_Image_2023-11-22_at_10.04.11_fb2e6834-removebg-preview.png" alt="">
+        <div class="form-box">
+            <div class="form-value">
+                <form action="" method="post" >
+                    <h2>Login</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input name="username" id="username" type="email" required>
+                        <label for="">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input name="password" id="password" type="password" required>
+                        <label for="">Password</label>
+                    </div>
+                    <div style="display: none;" class="forget">
+                        <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
+
+                    </div>
+
+                </form>
+                <button onclick="login()" id='loginButton'>Login</button>
+            </div>
+        </div>
+    </section>
+<script src="../js/login.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
